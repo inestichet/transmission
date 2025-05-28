@@ -1,119 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Arbre Décisionnel - Transmission d'Entreprise</title>
+  <title>Arbre décisionnel – Transmission d’entreprise</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .node { margin: 10px 0; }
-    .question { font-weight: bold; margin-top: 15px; }
-    .options button { margin-right: 10px; margin-top: 5px; }
-    .result { margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f9f9f9; }
+    h1, h2 { color: #2c3e50; }
+    .step { background-color: #e8f5e9; padding: 15px; margin: 10px 0; border-left: 6px solid #2ecc71; }
+    .substep { margin-left: 20px; }
+    .note { color: #e67e22; font-style: italic; }
   </style>
 </head>
 <body>
-  <h1>Arbre Décisionnel Interactif – Transmission d'Entreprise</h1>
-  <div id="decision-tree"></div>
 
-  <script>
-    const tree = {
-      question: "Souhaitez-vous planifier la transmission de votre entreprise ?",
-      options: {
-        Oui: {
-          question: "Volonté de transmettre un patrimoine professionnel ?",
-          options: {
-            Oui: {
-              question: "Donation-partage possible ?",
-              options: {
-                Oui: {
-                  result: "✅ Donation-partage\nAvantages : Transmission anticipée, réduction de droits\nInconvénients : Irrévocable"
-                },
-                Non: {
-                  question: "Eligibilité au Pacte Dutreil ?",
-                  options: {
-                    Oui: {
-                      result: "✅ Pacte Dutreil\nAvantages : Exonération partielle, continuité\nInconvénients : Engagements contraignants"
-                    },
-                    Non: {
-                      question: "Création ou usage d'une holding envisageable ?",
-                      options: {
-                        Oui: {
-                          result: "✅ Société Holding\nAvantages : Optimisation fiscale, contrôle\nInconvénients : Complexité de gestion"
-                        },
-                        Non: {
-                          question: "Société Civile adaptée à la structuration patrimoniale ?",
-                          options: {
-                            Oui: {
-                              result: "✅ Société Civile (SCI/SC)\nAvantages : Transmission souple, contrôle des parts\nInconvénients : Forme juridique rigide"
-                            },
-                            Non: {
-                              question: "Prévoir la gestion après le décès ?",
-                              options: {
-                                Oui: {
-                                  result: "✅ Mandat à effet posthume\nAvantages : Gestion assurée après décès\nInconvénients : Durée limitée, formalisme"
-                                },
-                                Non: {
-                                  question: "Utiliser un testament ou clauses spécifiques ?",
-                                  options: {
-                                    Oui: {
-                                      result: "✅ Testament/clauses\nAvantages : Liberté rédactionnelle\nInconvénients : Contestabilité possible"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    };
+<h1>Arbre décisionnel – Transmission d’entreprise</h1>
 
-    const container = document.getElementById('decision-tree');
+<div class="step">
+  <strong>1. Souhaitez-vous transmettre votre entreprise ?</strong><br>
+  ✅ Oui, de votre vivant → <strong>Allez à 2</strong><br>
+  ❌ Non, après votre décès → <strong>Allez à 5</strong>
+</div>
 
-    function renderNode(node, parent) {
-      const div = document.createElement('div');
-      div.className = 'node';
+<div class="step">
+  <strong>2. Transmission anticipée (de votre vivant)</strong><br>
+  2.1 Souhaitez-vous conserver le contrôle ou les revenus ?<br>
+  ✅ Oui → <strong>Allez à 3</strong><br>
+  ❌ Non → <strong>Allez à 4</strong>
+</div>
 
-      if (node.question) {
-        const question = document.createElement('div');
-        question.className = 'question';
-        question.textContent = node.question;
-        div.appendChild(question);
+<div class="step">
+  <strong>3. Transmission avec conservation de revenus/contrôle</strong>
+  <div class="substep">
+    🔹 <strong>Donation-partage avec démembrement de propriété</strong><br>
+    → Transmet nue-propriété aux héritiers<br>
+    → Conserve usufruit (revenus) pour le dirigeant<br>
+    <span class="note">⚠️ Attention à la gestion partagée entre usufruitier/nus-propriétaires</span>
+    <br><br>
+    🔹 <strong>Création d’une société holding</strong><br>
+    → Permet de structurer la gouvernance, la répartition du pouvoir<br>
+    → Transmission indirecte par parts sociales<br>
+    → Peut bénéficier du Pacte Dutreil
+    <br><br>
+    🔹 <strong>Utilisation d’une société civile (SCI, SC, etc.)</strong><br>
+    → Idéal pour organiser la détention d’un patrimoine immobilier ou financier<br>
+    → Facilite la gestion familiale<br>
+    <span class="note">⚠️ Peut générer des conflits si mauvaise rédaction des statuts</span>
+  </div>
+</div>
 
-        const optionsDiv = document.createElement('div');
-        optionsDiv.className = 'options';
+<div class="step">
+  <strong>4. Transmission sans volonté de conserver le contrôle</strong>
+  <div class="substep">
+    🔹 <strong>Pacte Dutreil</strong><br>
+    → Exonération de 75% des droits de mutation à titre gratuit<br>
+    → Engagement collectif puis individuel de conservation<br>
+    → Nécessite une activité opérationnelle
+  </div>
+</div>
 
-        for (const [label, child] of Object.entries(node.options)) {
-          const btn = document.createElement('button');
-          btn.textContent = label;
-          btn.onclick = () => {
-            div.innerHTML = '';
-            renderNode(child, div);
-          };
-          optionsDiv.appendChild(btn);
-        }
-        div.appendChild(optionsDiv);
-      }
+<div class="step">
+  <strong>5. Transmission au décès</strong><br>
+  5.1 Avez-vous identifié un héritier repreneur ?<br>
+  ✅ Oui → <strong>Allez à 6</strong><br>
+  ❌ Non → <strong>Allez à 7</strong>
+</div>
 
-      if (node.result) {
-        const result = document.createElement('div');
-        result.className = 'result';
-        result.textContent = node.result;
-        div.appendChild(result);
-      }
+<div class="step">
+  <strong>6. Préparer la transmission ciblée</strong>
+  <div class="substep">
+    🔹 <strong>Testament avec clauses spécifiques</strong><br>
+    → Répartition des biens selon les volontés<br>
+    → Possibilité d’attribuer une part de l’entreprise au repreneur<br>
+    <span class="note">⚠️ Attention aux règles de réserve héréditaire</span>
+  </div>
+</div>
 
-      parent.appendChild(div);
-    }
+<div class="step">
+  <strong>7. En cas d’incertitude ou de mineurs</strong>
+  <div class="substep">
+    🔹 <strong>Mandat à effet posthume</strong><br>
+    → Permet à un mandataire (tiers de confiance) de gérer l’entreprise après le décès<br>
+    → Utile si les héritiers sont jeunes, non préparés, ou pour sécuriser la gestion<br>
+    → Durée maximale : 2 ans (ou plus si enfant mineur)
+  </div>
+</div>
 
-    renderNode(tree, container);
-  </script>
 </body>
 </html>
