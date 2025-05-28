@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Arbre Décisionnel - Transmission d'Entreprise</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .node { margin: 10px 0; }
+    .question { font-weight: bold; margin-top: 15px; }
+    .options button { margin-right: 10px; margin-top: 5px; }
+    .result { margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Arbre Décisionnel Interactif – Transmission d'Entreprise</h1>
+  <div id="decision-tree"></div>
+
+  <script>
+    const tree = {
+      question: "Souhaitez-vous planifier la transmission de votre entreprise ?",
+      options: {
+        Oui: {
+          question: "Volonté de transmettre un patrimoine professionnel ?",
+          options: {
+            Oui: {
+              question: "Donation-partage possible ?",
+              options: {
+                Oui: {
+                  result: "✅ Donation-partage\nAvantages : Transmission anticipée, réduction de droits\nInconvénients : Irrévocable"
+                },
+                Non: {
+                  question: "Eligibilité au Pacte Dutreil ?",
+                  options: {
+                    Oui: {
+                      result: "✅ Pacte Dutreil\nAvantages : Exonération partielle, continuité\nInconvénients : Engagements contraignants"
+                    },
+                    Non: {
+                      question: "Création ou usage d'une holding envisageable ?",
+                      options: {
+                        Oui: {
+                          result: "✅ Société Holding\nAvantages : Optimisation fiscale, contrôle\nInconvénients : Complexité de gestion"
+                        },
+                        Non: {
+                          question: "Société Civile adaptée à la structuration patrimoniale ?",
+                          options: {
+                            Oui: {
+                              result: "✅ Société Civile (SCI/SC)\nAvantages : Transmission souple, contrôle des parts\nInconvénients : Forme juridique rigide"
+                            },
+                            Non: {
+                              question: "Prévoir la gestion après le décès ?",
+                              options: {
+                                Oui: {
+                                  result: "✅ Mandat à effet posthume\nAvantages : Gestion assurée après décès\nInconvénients : Durée limitée, formalisme"
+                                },
+                                Non: {
+                                  question: "Utiliser un testament ou clauses spécifiques ?",
+                                  options: {
+                                    Oui: {
+                                      result: "✅ Testament/clauses\nAvantages : Liberté rédactionnelle\nInconvénients : Contestabilité possible"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const container = document.getElementById('decision-tree');
+
+    function renderNode(node, parent) {
+      const div = document.createElement('div');
+      div.className = 'node';
+
+      if (node.question) {
+        const question = document.createElement('div');
+        question.className = 'question';
+        question.textContent = node.question;
+        div.appendChild(question);
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
+
+        for (const [label, child] of Object.entries(node.options)) {
+          const btn = document.createElement('button');
+          btn.textContent = label;
+          btn.onclick = () => {
+            div.innerHTML = '';
+            renderNode(child, div);
+          };
+          optionsDiv.appendChild(btn);
+        }
+        div.appendChild(optionsDiv);
+      }
+
+      if (node.result) {
+        const result = document.createElement('div');
+        result.className = 'result';
+        result.textContent = node.result;
+        div.appendChild(result);
+      }
+
+      parent.appendChild(div);
+    }
+
+    renderNode(tree, container);
+  </script>
+</body>
+</html>
