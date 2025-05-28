@@ -2,38 +2,40 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arbre décisionnel – Transmission d’entreprise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transmission d’entreprise – Arbre décisionnel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
+      background-color: #f8f8f8;
+      color: #333;
       padding: 20px;
-      background-color: #f9f9f9;
+      max-width: 800px;
+      margin: auto;
     }
     h1 {
       color: #2c3e50;
+      text-align: center;
     }
     .step {
-      background: #e8f5e9;
+      background-color: #e8f5e9;
       border-left: 5px solid #2ecc71;
       padding: 15px;
-      margin-bottom: 15px;
+      margin: 20px 0;
     }
     .substep {
       margin-left: 20px;
-      margin-top: 10px;
     }
     a {
-      color: #2980b9;
+      color: #007acc;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
     .note {
-      color: #e67e22;
       font-style: italic;
+      color: #d35400;
     }
   </style>
 </head>
@@ -41,75 +43,80 @@
 
 <h1>Arbre décisionnel – Transmission d’entreprise</h1>
 
+<!-- Étape 1 -->
 <div id="1" class="step">
-  <strong>1. Souhaitez-vous transmettre votre entreprise ?</strong><br />
-  ✅ Oui, de votre vivant → <a href="#2">Allez à 2</a><br />
-  ❌ Non, après votre décès → <a href="#5">Allez à 5</a>
+  <strong>1. Souhaitez-vous transmettre votre entreprise ?</strong><br>
+  ✔️ <a href="#2">Oui, de votre vivant</a><br>
+  ❌ <a href="#5">Non, après votre décès</a>
 </div>
 
+<!-- Étape 2 -->
 <div id="2" class="step">
-  <strong>2. Transmission anticipée (de votre vivant)</strong><br />
-  2.1 Souhaitez-vous conserver le contrôle ou les revenus ?<br />
-  ✅ Oui → <a href="#3">Allez à 3</a><br />
-  ❌ Non → <a href="#4">Allez à 4</a>
+  <strong>2. Transmission anticipée (de votre vivant)</strong><br>
+  Souhaitez-vous conserver le contrôle ou les revenus ?<br>
+  ✔️ <a href="#3">Oui</a><br>
+  ❌ <a href="#4">Non</a>
 </div>
 
+<!-- Étape 3 -->
 <div id="3" class="step">
   <strong>3. Transmission avec conservation de revenus / contrôle</strong>
   <div class="substep">
-    🔹 <strong>Donation-partage avec démembrement de propriété</strong><br />
-    → Transmet la nue-propriété aux héritiers<br />
-    → Conserve l’usufruit (revenus) pour le dirigeant<br />
-    <span class="note">⚠️ Attention à la gestion partagée entre usufruitier et nus-propriétaires</span>
-    <br /><br />
+    🔹 <strong>Donation-partage avec démembrement</strong><br>
+    → Transmet la nue-propriété aux héritiers<br>
+    → Conserve l’usufruit pour le dirigeant<br>
+    <span class="note">⚠️ Gestion partagée entre usufruitier et nus-propriétaires</span><br><br>
 
-    🔹 <strong>Création d’une société holding</strong><br />
-    → Structuration de la gouvernance<br />
-    → Transmission indirecte par parts sociales<br />
-    → Éligible au Pacte Dutreil
-    <br /><br />
+    🔹 <strong>Création d’une société holding</strong><br>
+    → Structuration de la gouvernance<br>
+    → Transmission indirecte par parts sociales<br>
+    → Peut bénéficier du Pacte Dutreil<br><br>
 
-    🔹 <strong>Société civile (SCI, SC, etc.)</strong><br />
-    → Organise la détention du patrimoine immobilier ou financier<br />
-    → Facilite la gestion familiale<br />
-    <span class="note">⚠️ Peut générer des conflits si mauvaise rédaction des statuts</span>
+    🔹 <strong>Société civile (SCI, SC...)</strong><br>
+    → Détention d’un patrimoine immobilier ou financier<br>
+    → Facilite la gestion familiale<br>
+    <span class="note">⚠️ Conflits possibles si statuts mal rédigés</span>
   </div>
 </div>
 
+<!-- Étape 4 -->
 <div id="4" class="step">
   <strong>4. Transmission sans volonté de conserver le contrôle</strong>
   <div class="substep">
-    🔹 <strong>Pacte Dutreil</strong><br />
-    → Exonération de 75 % des droits de mutation à titre gratuit<br />
-    → Engagement collectif puis individuel de conservation<br />
-    → Activité opérationnelle requise
+    🔹 <strong>Pacte Dutreil</strong><br>
+    → Exonération de 75 % des droits de mutation<br>
+    → Engagement collectif + individuel<br>
+    → Nécessite une activité opérationnelle
   </div>
 </div>
 
+<!-- Étape 5 -->
 <div id="5" class="step">
-  <strong>5. Transmission au décès</strong><br />
-  5.1 Avez-vous identifié un héritier repreneur ?<br />
-  ✅ Oui → <a href="#6">Allez à 6</a><br />
-  ❌ Non → <a href="#7">Allez à 7</a>
+  <strong>5. Transmission au décès</strong><br>
+  Avez-vous identifié un héritier repreneur ?<br>
+  ✔️ <a href="#6">Oui</a><br>
+  ❌ <a href="#7">Non</a>
 </div>
 
+<!-- Étape 6 -->
 <div id="6" class="step">
-  <strong>6. Préparer la transmission ciblée</strong>
+  <strong>6. Transmission ciblée par testament</strong>
   <div class="substep">
-    🔹 <strong>Testament avec clauses spécifiques</strong><br />
-    → Répartition des biens selon les volontés<br />
-    → Attribution possible d’une part de l’entreprise à un héritier<br />
-    <span class="note">⚠️ Attention aux règles de réserve héréditaire</span>
+    🔹 <strong>Testament avec clauses spécifiques</strong><br>
+    → Répartition des biens selon vos volontés<br>
+    → Attribution d’une part à un héritier repreneur<br>
+    <span class="note">⚠️ Respect de la réserve héréditaire obligatoire</span>
   </div>
 </div>
 
+<!-- Étape 7 -->
 <div id="7" class="step">
-  <strong>7. En cas d’incertitude ou de mineurs</strong>
+  <strong>7. En cas d’incertitude ou d’héritiers mineurs</strong>
   <div class="substep">
-    🔹 <strong>Mandat à effet posthume</strong><br />
-    → Un mandataire gère l’entreprise après le décès<br />
-    → Utile si les héritiers sont jeunes ou non préparés<br />
-    → Durée maximale : 2 ans (ou plus si enfant mineur)
+    🔹 <strong>Mandat à effet posthume</strong><br>
+    → Permet à un mandataire de gérer l’entreprise après décès<br>
+    → Sécurise la gestion en l’absence de repreneur clair<br>
+    → Durée max : 2 ans (ou plus si enfant mineur)
   </div>
 </div>
 
